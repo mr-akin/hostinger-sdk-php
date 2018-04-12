@@ -754,6 +754,16 @@ class HostingerApi
         return $this->make_call('v1/client/unlink-social-by-email', 'POST', $params);
     }
 
+    
+    public function cpanelGetSessionUrlByService($order_id, $service)
+    {
+        $params = array(
+            'order_id' => $order_id,
+            'service' => $service
+        );
+        return $this->make_call('v1/cpanel/get-session-url', 'POST', $params);
+    }
+    
     /**
      * @param $username
      * @return array
@@ -790,4 +800,5 @@ class HostingerApi
         );
         return $this->make_call('v1/ssh-key/remove', 'POST', $params);
     }
+
 }
