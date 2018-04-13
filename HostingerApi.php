@@ -801,4 +801,25 @@ class HostingerApi
         return $this->make_call('v1/ssh-key/remove', 'POST', $params);
     }
 
+    /**
+     * @param $username
+     * @return bool
+     */
+    public function enableSshAccess($username) {
+        $params = array(
+            'username' => $username,
+        );
+        return $this->make_call('v1/ssh-key/enable-ssh-access', 'POST', $params);
+    }
+
+    /**
+     * @param $username
+     * @return bool
+     */
+    public function disableSshAccess($username) {
+        $params = array(
+            'username' => $username,
+        );
+        return $this->make_call('v1/ssh-key/disable-ssh-access', 'POST', $params);
+    }
 }
