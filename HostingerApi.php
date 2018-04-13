@@ -42,6 +42,29 @@ class HostingerApi
 
         return $this->make_call('v1/ticket/create_public', 'POST', $params);
     }
+    
+    /**
+     * @param string $name
+     * @param string $email
+     * @param string $subject
+     * @param string $content
+     * @param array $additional
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function publicTicketCreateIntercom($name, $email, $subject, $content, $additional = array()){
+        $params = array(
+            'name' => $name,
+            'email' => $email,
+            'subject' => $subject,
+            'content' => $content,
+            'ip' => $this->getIp(),
+        );
+
+        $params = array_merge($params, $additional);
+
+        return $this->make_call('v1/ticket/create_public_intercom', 'POST', $params);
+    }
 
     /**
      * @param int $id
@@ -731,6 +754,16 @@ class HostingerApi
         return $this->make_call('v1/client/unlink-social-by-email', 'POST', $params);
     }
 
+    
+    public function cpanelGetSessionUrlByService($order_id, $service)
+    {
+        $params = array(
+            'order_id' => $order_id,
+            'service' => $service
+        );
+        return $this->make_call('v1/cpanel/get-session-url', 'POST', $params);
+    }
+    
     /**
      * @param $username
      * @return array
@@ -789,6 +822,4 @@ class HostingerApi
         );
         return $this->make_call('v1/ssh-key/disable-ssh-access', 'POST', $params);
     }
-
-
 }
