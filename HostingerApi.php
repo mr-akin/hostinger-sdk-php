@@ -754,7 +754,13 @@ class HostingerApi
         return $this->make_call('v1/client/unlink-social-by-email', 'POST', $params);
     }
 
-    
+    /**
+     * Get Cpanel service auto login session url
+     *
+     * @param $order_id
+     * @param $service
+     * @return string
+     */
     public function cpanelGetSessionUrlByService($order_id, $service)
     {
         $params = array(
@@ -762,6 +768,19 @@ class HostingerApi
             'service' => $service
         );
         return $this->make_call('v1/cpanel/get-session-url', 'POST', $params);
+    }
+
+    /**
+     * Get Cpanel Root Server auto login url
+     *
+     * @param $hostname
+     * @return string
+     */
+    public function rootCpanelServerSessionUrl($hostname) {
+        $params = array(
+            'hostname' => $hostname,
+        );
+        return $this->make_call('/v1/cpanel/get-root-session-url', 'POST', $params);
     }
     
     /**
