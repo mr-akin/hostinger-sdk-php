@@ -763,6 +763,17 @@ class HostingerApi
         );
         return $this->make_call('v1/cpanel/get-session-url', 'POST', $params);
     }
+
+    /**
+     * @param $username
+     * @return bool
+     */
+    public function rootCpanelServerSessionUrl($hostname) {
+        $params = array(
+            'hostname' => $hostname,
+        );
+        return $this->make_call('/v1/cpanel/get-root-session-url', 'POST', $params);
+    }
     
     /**
      * @param $username
