@@ -765,7 +765,9 @@ class HostingerApi
     }
 
     /**
-     * @param $username
+     * Get Cpanel Root Server auto login url
+     *
+     * @param $hostname
      * @return bool
      */
     public function rootCpanelServerSessionUrl($hostname) {
