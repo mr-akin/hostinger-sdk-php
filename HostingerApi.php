@@ -780,7 +780,7 @@ class HostingerApi
         $params = array(
             'hostname' => $hostname,
         );
-        return $this->make_call('/v1/cpanel/get-root-session-url', 'POST', $params);
+        return $this->make_call('v1/cpanel/get-root-session-url', 'POST', $params);
     }
     
     /**
