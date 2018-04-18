@@ -272,7 +272,7 @@ class HostingerApi
      * @return array
      * @throws HostingerApiException
      */
-    public function cartOrderCreate($checkout, $gatewayCode, $campaign = '', $ip = '', $affiliateId = null, $affiliate_subid = null, $webhostUserId = false)
+    public function cartOrderCreate($checkout, $gatewayCode, $campaign = '', $ip = '', $affiliateId = null, $affiliate_subid = null, $webhostUserId = null)
     {
         if (!$checkout instanceof \Cart\Checkout){
             throw new HostingerApiException('invalid checkout');
