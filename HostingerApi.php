@@ -742,6 +742,13 @@ class HostingerApi
         return $this->make_call('v1/domain/registered-here', 'POST', $params);
     }
     
+    public function isAvailableForFreeTrialByEmail($email) {
+        $params = array(
+            'email' => $email
+        );
+        return $this->make_call('v1/order/allow-free-trial-by-email', 'POST', $params);
+    }
+    
     /**
      * Unlinks social by email
      * @param $email
