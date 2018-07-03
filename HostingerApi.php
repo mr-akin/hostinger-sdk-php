@@ -277,7 +277,7 @@ class HostingerApi
         if (!$checkout instanceof \Cart\Checkout){
             throw new HostingerApiException('invalid checkout');
         }
-        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode, 'campaign' => $campaign, 'ip' => $ip, 'affiliate_idev' => $affiliateId, 'affiliate_subid' => $affiliate_subid, 'hasoffers_session' => $hasoffer_session, 'webhostUserId' => $webhostUserId));
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout->toArray(), 'gateway_code' => $gatewayCode, 'campaign' => $campaign, 'ip' => $ip, 'affiliate_idev' => $affiliateId, 'affiliate_subid' => $affiliate_subid, 'hasoffers_session' => $hasoffer_session, 'webhostUserId' => $webhostUserId, 'csCampaignParam' => $csCampaignParam));
     }
 
     /**
