@@ -848,4 +848,20 @@ class HostingerApi
         );
         return $this->make_call('v1/ssh-key/disable-ssh-access', 'POST', $params);
     }
+    
+    /**
+     * @param $email
+     * @param $password
+     * @param $type
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function authWebmail($email = null, $password = null, $type = null) {
+        $params = array(
+            'email' => $email,
+            'pass'  => $password,
+            'type'  => $type,
+        );
+        return $this->make_call('v1/client/auth-webmail', 'POST', $params);
+    }
 }
