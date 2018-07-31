@@ -866,7 +866,7 @@ class HostingerApi
     }
     
     /**
-     * @return mixed
+     * @return array
      * @throws HostingerApiException
      */
     public function serverList() {
