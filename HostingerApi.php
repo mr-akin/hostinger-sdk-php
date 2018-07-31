@@ -864,4 +864,12 @@ class HostingerApi
         );
         return $this->make_call('v1/client/auth-webmail', 'POST', $params);
     }
+    
+    /**
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function serverList() {
+        return $this->make_call('v1/server/get-list', 'GET');
+    }
 }
