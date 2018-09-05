@@ -872,4 +872,16 @@ class HostingerApi
     public function serverList() {
         return $this->make_call('v1/server/get-list', 'GET');
     }
+    
+    /**
+     * @param int $id PaymentConfirmation ID
+     * @param string $status pending_confirmation | checked | abuse
+     * @param string $notes Optional
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function updatePaymentConfirmation($id, $status, $notes = null) {
+        $params = compact('id', 'status', 'notes');
+        return $this->make_call('v1/payment/modify-confirmation', 'POST', $params);
+    }
 }
