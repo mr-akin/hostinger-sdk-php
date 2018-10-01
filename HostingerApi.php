@@ -884,4 +884,13 @@ class HostingerApi
         $params = compact('id', 'status', 'notes');
         return $this->make_call('v1/payment/modify-confirmation', 'POST', $params);
     }
+    
+    /**
+     * @param int $id
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function orderUpgradeOptionList($id) {
+        return $this->make_call('/v1/order/upgrade-options-list/'.$id, 'GET');
+    }
 }
