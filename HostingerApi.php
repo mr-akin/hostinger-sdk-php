@@ -891,6 +891,6 @@ class HostingerApi
      * @throws HostingerApiException
      */
     public function orderUpgradeOptionList($id) {
-        return $this->make_call('/v1/order/upgrade-options-list/'.$id, 'GET');
+        return $this->make_call('v1/order/upgrade-options-list/'.$id, 'GET');
     }
 }
