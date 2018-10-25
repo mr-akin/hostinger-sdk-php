@@ -873,6 +873,13 @@ class HostingerApi
         return $this->make_call('v1/server/get-list', 'GET');
     }
     
+    public function currencyRateList($base_currency) {
+        $params = array();
+        $params['base_currency'] = $base_currency;
+        
+        return $this->make_call('v1/settings/currency-rates', 'GET', $params);
+    }
+    
     /**
      * @param int $id PaymentConfirmation ID
      * @param string $status pending_confirmation | checked | abuse
