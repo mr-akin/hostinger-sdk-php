@@ -900,4 +900,15 @@ class HostingerApi
     public function orderUpgradeOptionList($id) {
         return $this->make_call('v1/order/upgrade-options-list/'.$id, 'GET');
     }
+    
+    /**
+     * @param int $order_id
+     * @param int $reseller_id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function informInvalidOrderClient($order_id, $reseller_id) {
+        $params = compact('reseller_id');
+        return $this->make_call('v1/order/'.$order_id.'/inform', 'POST', $params);
+    }
 }
