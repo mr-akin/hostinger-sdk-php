@@ -911,4 +911,20 @@ class HostingerApi
         $params = compact('reseller_id');
         return $this->make_call('v1/order/'.$order_id.'/inform', 'POST', $params);
     }
+
+    /**
+     * @param $id
+     * @param $status
+     * @param $comment
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function changeWebsiteDesignQuestionnaireStatus($id, $status, $comment)
+    {
+        $params = [
+            'status' => $status,
+            'comment' => $comment,
+        ];
+        return $this->make_call('v1/settings/change-website-design-questionnaire-status/' . $id, 'POST', $params);
+    }
 }
