@@ -908,7 +908,8 @@ class HostingerApi
      * @return mixed
      * @throws HostingerApiException
      */
-    public function informInvalidOrderClient($order_id, $reseller_id, $send_email) {
+    public function informInvalidOrderClient($order_id, $reseller_id, $send_email = true)
+    {
         $params = compact(['reseller_id','send_email']);
         return $this->make_call('v1/order/'.$order_id.'/inform', 'POST', $params);
     }
