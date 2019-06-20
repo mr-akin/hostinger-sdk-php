@@ -929,4 +929,17 @@ class HostingerApi
         ];
         return $this->make_call('v1/settings/change-website-design-questionnaire-status/' . $id, 'POST', $params);
     }
+
+    /**
+     * @param $id
+     * @param $price_redemption
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function updateDomainSettingPriceRedemption($id, $price_redemption)
+    {
+        return $this->make_call('v1/domain/update-price-redemption/' . $id, 'POST', [
+            'price_redemption' => $price_redemption,
+        ]);
+    }
 }
