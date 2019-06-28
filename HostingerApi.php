@@ -931,14 +931,15 @@ class HostingerApi
     }
 
     /**
-     * @param $id
+     * @param $tld
+     * @param $registrar
      * @param $price_redemption
      * @return mixed
      * @throws HostingerApiException
      */
-    public function updateDomainSettingPriceRedemption($id, $price_redemption)
+    public function updateDomainSettingPriceRedemption($tld, $registrar, $price_redemption)
     {
-        return $this->make_call('v1/domain/update-price-redemption/' . $id, 'POST', [
+        return $this->make_call('v1/domain/update-price-redemption/'.$tld.'/'.$registrar, 'POST', [
             'price_redemption' => $price_redemption,
         ]);
     }
