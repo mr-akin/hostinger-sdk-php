@@ -954,6 +954,6 @@ class HostingerApi
         $params = [
             'orders_list' => $order_ids
         ];
-        return $this->make_call('v1/settings/vps-nodes', 'POST', $params);
+        return $this->make_call('v1/settings/vps-nodes/', 'POST', $params);
     }
 }
