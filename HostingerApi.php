@@ -943,4 +943,17 @@ class HostingerApi
             'price_redemption' => $price_redemption,
         ]);
     }
+
+    /**
+     * @param $order_ids
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function getVpsNodesByOrderIds($order_ids)
+    {
+        $params = [
+            'orders_list' => $order_ids
+        ];
+        return $this->make_call('v1/settings/vps-nodes/', 'POST', $params);
+    }
 }
