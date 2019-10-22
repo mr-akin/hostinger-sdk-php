@@ -416,8 +416,8 @@ class HostingerApi
      * @return bool
      * @throws HostingerApiException
      */
-    public function domainIsAvailable($domain, $ip = '') {
-        $result = $this->make_call('v1/domain/available?domain='.$domain.'&client_ip='.$ip, 'GET');
+    public function domainIsAvailable($domain, $ip = '', $idn_language = '') {
+        $result = $this->make_call('v1/domain/available?domain='.$domain.'&client_ip='.$ip.'&idn_language='.$idn_language, 'GET');
         return isset($result['available']) ? $result['available'] : false;
     }
 
