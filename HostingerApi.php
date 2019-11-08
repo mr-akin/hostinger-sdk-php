@@ -956,4 +956,17 @@ class HostingerApi
         ];
         return $this->make_call('v1/settings/vps-nodes', 'POST', $params);
     }
+
+    /**
+     * @param $id
+     * @param $status
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function updateOnboardingMigrationRequestStatus($id, $status)
+    {
+        return $this->make_call('/v1/settings/update-migration-request-status/'.$id, 'POST', [
+            'status' => $status,
+        ]);
+    }
 }
