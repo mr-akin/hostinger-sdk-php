@@ -965,7 +965,7 @@ class HostingerApi
      */
     public function updateOnboardingMigrationRequestStatus($id, $status)
     {
-        return $this->make_call('/v1/settings/update-migration-request-status/'.$id, 'POST', [
+        return $this->make_call('v1/settings/update-migration-request-status/'.$id, 'POST', [
             'status' => $status,
         ]);
     }
