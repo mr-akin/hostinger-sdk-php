@@ -960,13 +960,15 @@ class HostingerApi
     /**
      * @param $id
      * @param $status
+     * @param $reason
      * @return mixed
      * @throws HostingerApiException
      */
-    public function updateOnboardingMigrationRequestStatus($id, $status)
+    public function updateOnboardingMigrationRequestStatus($id, $status, $reason)
     {
         return $this->make_call('v1/settings/update-migration-request-status/'.$id, 'POST', [
             'status' => $status,
+            'reason' => $reason,
         ]);
     }
 }
