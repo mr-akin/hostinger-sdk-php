@@ -971,4 +971,17 @@ class HostingerApi
             'reason' => $reason,
         ]);
     }
+
+    /**
+     * @param $id
+     * @param $price_renew
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function updateDomainSettingPriceRenew($id, $price_renew)
+    {
+        return $this->make_call("v1/domain/update-price-renew/{$id}", 'POST', [
+            'price_renew' => $price_renew,
+        ]);
+    }
 }
