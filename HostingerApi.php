@@ -420,6 +420,21 @@ class HostingerApi
         $result = $this->make_call('v1/domain/available?domain='.$domain.'&client_ip='.$ip.'&idn_language='.$idn_language, 'GET');
         return isset($result['available']) ? $result['available'] : false;
     }
+    
+    /**
+     * @param $domains
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function domainsBulkAvailable($domains, $ip = '', $idn_language = '') {
+        $params = array (
+            'domains' => $domains,
+            'ip' => $ip,
+            'idn_language' => $idn_language
+        );
+        $result = $this->make_call('v1/domain/available_multiple', 'POST', $params);
+        return $result;
+    }
 
 
     /**
