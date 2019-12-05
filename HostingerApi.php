@@ -999,4 +999,22 @@ class HostingerApi
             'price_renew' => $price_renew,
         ]);
     }
+
+    /**
+     * @param $invoice_id
+     * @param $items_to_refund
+     * @param $payment_gateway
+     * @param $refund_type
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function refundInvoice($invoice_id,$items_to_refund,$payment_gateway,$refund_type)
+    {
+        return $this->make_call('v1/client/refund-invoice', 'POST',[
+            'invoice_id' => $invoice_id,
+            'invoice_items' => $items_to_refund,
+            'payment_gateway' => $payment_gateway,
+            'refund_type' => $refund_type,
+        ]);
+    }
 }
