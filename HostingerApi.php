@@ -1017,4 +1017,30 @@ class HostingerApi
             'refund_type' => $refund_type,
         ]);
     }
+
+
+    /**
+     * @param $order_id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function cancelDomainOrder($order_id)
+    {
+        return $this->make_call('v1/order/cancel-domain-order', 'POST', [
+           'order_id' => $order_id,
+        ]);
+    }
+
+    /**
+     * @param $base_price_id
+     * @param $base_price
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function updateDomainBasePrice($base_price_id, $base_price)
+    {
+        return $this->make_call("v1/domain/update-price-base/{$base_price_id}",'POST', [
+            'base_price' => $base_price,
+        ]);
+    }
 }
