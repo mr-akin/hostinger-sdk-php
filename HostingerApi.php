@@ -1043,4 +1043,12 @@ class HostingerApi
             'base_price' => $base_price,
         ]);
     }
+
+    /**
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function getDomainsRenewalPrices() {
+        return $this->make_call('v1/domain/renewal-pricing', 'GET');
+    }
 }
