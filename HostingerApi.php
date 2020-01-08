@@ -281,6 +281,23 @@ class HostingerApi
     }
 
     /**
+     * @param $checkout
+     * @param $gatewayCode
+     * @param string $campaign
+     * @param string $ip
+     * @param null $hasoffer_session
+     * @param null $webhostUserId
+     * @param null $csCampaignParam
+     * @param null $utmData
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function cartOrderCreateV2($checkout, $gatewayCode, $campaign = '', $ip = '', $hasoffer_session = null, $webhostUserId = null, $csCampaignParam = null, $utmData = null)
+    {
+        return $this->make_call('v1/cart', 'POST', array('checkout'=> $checkout, 'gateway_code' => $gatewayCode, 'campaign' => $campaign, 'ip' => $ip, 'hasoffers_session' => $hasoffer_session, 'webhostUserId' => $webhostUserId, 'csCampaignParam' => $csCampaignParam, 'utm_data' => $utmData));
+    }
+
+    /**
      * @param int $client_id
      * @return boolean
      * @throws HostingerApiException
