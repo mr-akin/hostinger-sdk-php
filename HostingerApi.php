@@ -1068,4 +1068,29 @@ class HostingerApi
     public function getDomainsRenewalPrices() {
         return $this->make_call('v1/domain/renewal-pricing', 'GET');
     }
+
+    /**
+     * @param $client_id
+     * @param $panel
+     * @param $panel_link
+     * @param $username
+     * @param $password
+     * @param $domain
+     * @param $custom_script
+     * @param $info
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function storeNewMigrationRequest($client_id, $panel, $panel_link, $username, $password, $domain, $custom_script = null, $info = null)
+    {
+        return $this->make_call('v1/settings/create-onboarding-migration-request/' . $client_id, 'POST', [
+            'panel' => $panel,
+            'panel_link' => $panel_link,
+            'username' => $username,
+            'password' => $password,
+            'domain' => $domain,
+            'custom_script' => $custom_script,
+            'info' => $info,
+        ]);
+    }
 }
