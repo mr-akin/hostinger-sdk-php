@@ -1093,4 +1093,14 @@ class HostingerApi
             'info' => $info,
         ]);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function deleteMigrationRequest($id)
+    {
+        return $this->make_call('v1/settings/delete-onboarding-migration-request/' . $id, 'DELETE');
+    }
 }
