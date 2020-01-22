@@ -1081,9 +1081,10 @@ class HostingerApi
      * @return mixed
      * @throws HostingerApiException
      */
-    public function storeNewMigrationRequest($client_id, $panel, $panel_link, $username, $password, $domain, $custom_script = null, $info = null)
+    public function storeNewMigrationRequest($client_id, $order_id, $panel, $panel_link, $username, $password, $domain, $custom_script = null, $info = null)
     {
         return $this->make_call('v1/settings/create-onboarding-migration-request/' . $client_id, 'POST', [
+            'reseller_client_order_id' => $order_id,
             'panel' => $panel,
             'panel_link' => $panel_link,
             'username' => $username,
