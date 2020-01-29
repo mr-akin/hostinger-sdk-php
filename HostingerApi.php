@@ -1104,4 +1104,14 @@ class HostingerApi
     {
         return $this->make_call('v1/settings/delete-onboarding-migration-request/' . $id, 'DELETE');
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function retryGdprDeletionProcess($id)
+    {
+        return $this->make_call('v1/client/gdpr/delete/retry/' . $id, 'POST');
+    }
 }
