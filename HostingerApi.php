@@ -1114,4 +1114,18 @@ class HostingerApi
     {
         return $this->make_call('v1/client/gdpr/delete/retry/' . $id, 'POST');
     }
+
+    /**
+     * @param $order_id
+     * @param $to_client_id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function moveDomain($order_id, $to_client_id)
+    {
+        return $this->make_call('/v1/domain/move-domain', 'POST', [
+            'order_id '    => $order_id,
+            'to_client_id' => $to_client_id
+        ]);
+    }
 }
