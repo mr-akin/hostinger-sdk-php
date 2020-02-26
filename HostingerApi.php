@@ -1124,7 +1124,7 @@ class HostingerApi
     public function moveDomain($order_id, $to_client_id)
     {
         return $this->make_call('v1/domain/move-domain', 'POST', [
-            'order_id '    => $order_id,
+            'order_id'     => $order_id,
             'to_client_id' => $to_client_id
         ]);
     }
