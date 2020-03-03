@@ -1128,4 +1128,23 @@ class HostingerApi
             'to_client_id' => $to_client_id
         ]);
     }
+    /**
+     * @param $files_domain
+     * @param $username
+     * @param $domain
+     * @param $client_id
+     * @param $order_id
+     * @return string
+     * @throws HostingerApiException
+     */
+    public function getFileManagerURL($files_domain, $username, $domain, $client_id, $order_id)
+    {
+        return $this->make_call('hosting/files/manager', 'GET', [
+            'files_domain'     => $files_domain,
+            'username'         => $username,
+            'domain'           => $domain,
+            'client_id'        => $client_id,
+            'order_id'         => $order_id,
+        ]);
+    }
 }
