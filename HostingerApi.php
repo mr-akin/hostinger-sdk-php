@@ -142,7 +142,7 @@ class HostingerApi
      * @return array
      * @throws HostingerApiException
      */
-    public function clientCreate($first_name, $password, $email, $additionalParams = array())
+    public function clientCreate($first_name, $password = null, $email, $additionalParams = array())
     {
         $params = array(
             'email' => $email,
