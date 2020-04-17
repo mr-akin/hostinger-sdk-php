@@ -452,6 +452,20 @@ class HostingerApi
         $result = $this->make_call('v1/domain/available_multiple', 'POST', $params);
         return $result;
     }
+    
+    /**
+     * @param $domains
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function domainsBulkAvailableV2($domains, $idn_language = '') {
+        $params = array (
+            'domains' => $domains,
+            'idn_language' => $idn_language
+        );
+        $result = $this->make_call('v1/domain/available_bulk', 'POST', $params);
+        return $result;
+    }
 
 
     /**
