@@ -177,6 +177,44 @@ class HostingerApi
     }
 
     /**
+     * @param $email
+     * @param array $additionalParams
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function clientCreateOnlyEmail($email, $additionalParams = array())
+    {
+        $params = array(
+            'email' => $email,
+            'client_ip' => $this->getIp(),
+        );
+
+        $defaultAdditionalParams = array(
+            'last_name' => '',
+            'company' => '',
+            'address_1' => '',
+            'address_2' => '',
+            'city' => '',
+            'country' => '',
+            'state' => '',
+            'zip' => '',
+            'phone' => '',
+            'phone_cc' => '',
+            'cpf' => '',
+            'referral_id' => '',
+            'reseller_client_campaign' => '',
+            'reseller_client_campaign_source' => '',
+            'delegate_access_hash' => '',
+            'r' => '',
+        );
+
+        $additionalParams = array_merge($defaultAdditionalParams, $additionalParams);
+        $params = array_merge($additionalParams, $params);
+
+        return $this->make_call('v1/client', 'POST', $params);
+    }
+
+    /**
      * @param $client_id
      * @param $title
      * @param array $ns_list = array(
