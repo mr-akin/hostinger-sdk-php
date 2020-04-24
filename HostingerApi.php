@@ -176,16 +176,15 @@ class HostingerApi
         return $this->make_call('v1/client', 'POST', $params);
     }
 
+
     /**
-     * @param $email
-     * @param array $additionalParams
-     * @return array
+     * @param $params
+     * @return mixed
      * @throws HostingerApiException
      */
-    public function clientCreateOnlyEmail($email, $additionalParams = array())
+    public function clientCreateV2($params)
     {
-        $params = array(
-            'email' => $email,
+        $additionalParams = array(
             'client_ip' => $this->getIp(),
         );
 
