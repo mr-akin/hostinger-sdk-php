@@ -335,6 +335,24 @@ class HostingerApi
     }
 
     /**
+     * @param \Cart\Checkout $checkout
+     * @param array $params
+     * @return array
+     * @throws HostingerApiException
+     */
+    public function cartOrderCreateV3($checkout, array $params)
+    {
+        if (!$checkout instanceof \Cart\Checkout){
+            throw new HostingerApiException('invalid checkout');
+        }
+        return $this->make_call('v1/cart', 'POST', array_merge(
+                [
+                    'checkout'=> $checkout->toArray()
+                ], $params)
+        );
+    }
+
+    /**
      * @param int $client_id
      * @return boolean
      * @throws HostingerApiException
