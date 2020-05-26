@@ -1215,4 +1215,14 @@ class HostingerApi
             'order_id'         => $order_id,
         ]);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws HostingerApiException
+     */
+    public function stopGdprDeletionProcess($id)
+    {
+        return $this->make_call('v1/client/gdpr/delete/stop/' . $id, 'POST');
+    }
 }
