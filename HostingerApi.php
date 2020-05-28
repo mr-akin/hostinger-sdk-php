@@ -5,11 +5,13 @@ class HostingerApi
     protected $username = '';
     protected $password = '';
     protected $api_url = '';
+    protected $host_header = null;
 
     /**
      * $config['username'] string
      * $config['password'] string
      * $config['api_url']  string Must end with '/'
+     * $config['host_header'] string, optional if you want dynamic Host header.
      *
      * @param array $config (See above)
      */
@@ -18,6 +20,7 @@ class HostingerApi
         $this->username = $config['username'];
         $this->password = $config['password'];
         $this->api_url = $config['api_url'];
+        $this->host_header = array_key_exists('host_header', $config) ? $config['host_header'] : null;
     }
 
     /**
@@ -42,7 +45,7 @@ class HostingerApi
 
         return $this->make_call('v1/ticket/create_public', 'POST', $params);
     }
-    
+
     /**
      * @param string $name
      * @param string $email
@@ -109,7 +112,7 @@ class HostingerApi
         );
         return $this->make_call('v1/client/get-by-email-password', 'POST', $params);
     }
-    
+
     /**
      * @param string $email
      * @return array
@@ -492,7 +495,7 @@ class HostingerApi
         $result = $this->make_call('v1/domain/available?domain='.$domain.'&client_ip='.$ip.'&idn_language='.$idn_language, 'GET');
         return isset($result['available']) ? $result['available'] : false;
     }
-    
+
     /**
      * @param $domains
      * @return array
@@ -507,7 +510,7 @@ class HostingerApi
         $result = $this->make_call('v1/domain/available_multiple', 'POST', $params);
         return $result;
     }
-    
+
     /**
      * @param $domains
      * @return array
@@ -802,6 +805,11 @@ class HostingerApi
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+        if ($this->host_header) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Host: '.$this->host_header
+            ]);
+        }
 
         if ($user && $password) {
             curl_setopt($ch, CURLOPT_USERPWD, "$user:$password");
@@ -842,14 +850,14 @@ class HostingerApi
     public function is_registered_at_hostinger(array $params) {
         return $this->make_call('v1/domain/registered-here', 'POST', $params);
     }
-    
+
     public function isAvailableForFreeTrialByEmail($email) {
         $params = array(
             'email' => $email
         );
         return $this->make_call('v1/order/allow-free-trial-by-email', 'POST', $params);
     }
-    
+
     /**
      * Unlinks social by email
      * @param $email
@@ -890,7 +898,7 @@ class HostingerApi
         );
         return $this->make_call('v1/cpanel/get-root-session-url', 'POST', $params);
     }
-    
+
     /**
      * @param $username
      * @return array
@@ -949,7 +957,7 @@ class HostingerApi
         );
         return $this->make_call('v1/ssh-key/disable-ssh-access', 'POST', $params);
     }
-    
+
     /**
      * @param $email
      * @param $password
@@ -965,7 +973,7 @@ class HostingerApi
         );
         return $this->make_call('v1/client/auth-webmail', 'POST', $params);
     }
-    
+
     /**
      * @return array
      * @throws HostingerApiException
@@ -973,14 +981,14 @@ class HostingerApi
     public function serverList() {
         return $this->make_call('v1/server/get-list', 'GET');
     }
-    
+
     public function currencyRateList($base_currency) {
         $params = array();
         $params['base_currency'] = $base_currency;
-        
+
         return $this->make_call('v1/settings/currency-rates', 'GET', $params);
     }
-    
+
     /**
      * @param int $id PaymentConfirmation ID
      * @param string $status pending_confirmation | checked | abuse
@@ -992,7 +1000,7 @@ class HostingerApi
         $params = compact('id', 'status', 'notes');
         return $this->make_call('v1/payment/modify-confirmation', 'POST', $params);
     }
-    
+
     /**
      * @param int $id
      * @return array
@@ -1001,7 +1009,7 @@ class HostingerApi
     public function orderUpgradeOptionList($id) {
         return $this->make_call('v1/order/upgrade-options-list/'.$id, 'GET');
     }
-    
+
     /**
      * @param int $order_id
      * @param int $reseller_id
